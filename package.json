@@ -1,0 +1,63 @@
+{
+  "name": "enter-surprise",
+  "displayName": "Enter Surprise",
+  "description": "A cada Enter existe uma pequena chance de um GIF (ou MP4) aparecer na tela.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Other"],
+  "main": "./extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      { "command": "enterSurprise.toggle", "title": "Enter Surprise: Ligar/Desligar" },
+      { "command": "enterSurprise.triggerNow", "title": "Enter Surprise: Testar agora" },
+      { "command": "enterSurprise.chooseFolder", "title": "Enter Surprise: Escolher pasta de GIFs/vídeos" }
+    ],
+    "configuration": {
+      "title": "Enter Surprise",
+      "properties": {
+        "enterSurprise.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Liga/desliga a extensão."
+        },
+        "enterSurprise.chancePercent": {
+          "type": "number",
+          "default": 3,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Chance (em %) de a mídia aparecer a cada Enter."
+        },
+        "enterSurprise.cooldownSeconds": {
+          "type": "number",
+          "default": 10,
+          "minimum": 0,
+          "description": "Tempo mínimo (segundos) entre duas aparições."
+        },
+        "enterSurprise.mediaFolder": {
+          "type": "string",
+          "default": "",
+          "description": "Pasta com .gif, .webp, .png, .jpg, .mp4 ou .webm. Vazio = pasta 'media' dentro da extensão."
+        },
+        "enterSurprise.urls": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "URLs https de GIFs/vídeos (opcional, sorteadas junto com os arquivos locais)."
+        },
+        "enterSurprise.imageDurationMs": {
+          "type": "number",
+          "default": 3000,
+          "minimum": 500,
+          "description": "Por quanto tempo (ms) GIFs/imagens ficam na tela. Vídeos fecham sozinhos ao terminar."
+        },
+        "enterSurprise.videoMuted": {
+          "type": "boolean",
+          "default": true,
+          "description": "Toca vídeos sem som."
+        }
+      }
+    }
+  }
+}
